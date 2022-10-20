@@ -1,16 +1,19 @@
 import { v4 as uuidv4 } from 'uuid'
 import { defineStore } from 'pinia';
+import { useStorage } from '@vueuse/core';
 
 export const taskStore = defineStore('taskStore', {
     state: () => {
         return {
-            tasks: [],
-            taskEdit:[],
-            count:0
+            tasks: useStorage('tasks',[]),
+            taskEdit: useStorage('taskEdit',[]),
+            count: useStorage('count',0)
         }
     },
     getters: {
         getTasks: (state) => state.tasks,
+        getTasksIncomplete: (state) => state.tasks.filter(task => task.status == "To Conclude"),
+        getTasksComplete: (state) => state.tasks.filter(task => task.status == "Completed"),
         getCount: (state) => state.count
     },
     actions: {

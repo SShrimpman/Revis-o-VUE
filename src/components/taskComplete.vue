@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="border my-3 p-4">
-                    <div v-for="(item, idx) in getTasks" class="grid grid-cols-2 m-2">
+                    <div v-for="(item, idx) in getTasksComplete" class="grid grid-cols-2 m-2">
                         <div class="flex flex-start m-2">
                             <input class="accent-blue-500 m-2" name="option" type="radio" @click="selected(idx)">
                             <label>{{item.description}}</label>
@@ -42,7 +42,7 @@ export default {
         };
     },
     computed:{
-        ...mapState(taskStore,['getTasks','getCount']),
+        ...mapState(taskStore,['getTasksComplete','getCount']),
     },
     methods: {
         home() {
